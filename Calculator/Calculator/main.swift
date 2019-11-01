@@ -30,15 +30,34 @@ func mathStuffFactory(opString: String) -> (Double, Double) -> Double {
 func takeInInput(input:String) -> Double {
     
     
-    let userInputAsArray = input.components(separatedBy: " ")
+    var userInputAsArray = input.components(separatedBy: " ")
+  
     
-    let mathFunction = mathStuffFactory(opString: userInputAsArray[1])
-    
-    let num1 = Double(userInputAsArray[0]) ?? 0.0
+      let num1 = Double(userInputAsArray[0]) ?? 0.0
 
-    let num2 = Double(userInputAsArray[2]) ?? 0.0
+      let num2 = Double(userInputAsArray[2]) ?? 0.0
+      
+      let mathFunction = mathStuffFactory(opString: userInputAsArray[1])
+         let calcu = mathFunction(num1,num2)
     
-    let calcu = mathFunction(num1,num2)
+    
+    
+    if userInputAsArray[1] == "?" {
+        let operAndArray = ["*", "/", "+", "-"]
+        userInputAsArray[1] = String(operAndArray.randomElement() ?? "*")
+       print(calcu)
+        print("Can you guess what the operator is ?")
+   let userGuess = readLine()
+        if userGuess == userInputAsArray[1]{
+            print ("That's Correct Yippeeeee")
+        }else {
+            print("Ohhh, that's wrong...")
+        }
+    }
+    
+    
+   
+  
  
 //    print(userInputAsArray)
 //    print(calcu)
