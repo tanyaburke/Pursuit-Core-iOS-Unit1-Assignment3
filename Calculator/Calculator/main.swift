@@ -13,14 +13,31 @@ func mathStuffFactory(opString: String) -> (Double, Double) -> Double {
   case "+":
     return {x, y in x + y }
   case "-":
-    return {x, y in x - y }
-  case "*":
+    return {x, y in x - y }  case "*":
     return {x, y in x * y }
   case "/":
     return {x, y in x / y }
   default:
     return {x, y in x + y }
   }
+}
+
+func myFilter(inputArray: [Int], by: String, filter: (Int)) -> [Int] {
+   var filterArray = [Int]()
+    for int in inputArray {
+        if by == "<" {
+            if int < filter {
+                filterArray.append(int)
+               
+            }
+        }else if by == ">" {
+            if int > filter {
+                filterArray.append(int)
+                
+        }
+    }
+}
+    return filterArray
 }
 
 //print("Please enter an expression, example: 5 + 3 ")
@@ -39,8 +56,19 @@ func takeInInput(input:String) -> Double {
       
       let mathFunction = mathStuffFactory(opString: userInputAsArray[1])
          let calcu = mathFunction(num1,num2)
+    let filterNumsArray = [Int]()
+   
     
-    
+    if userInputAsArray.contains("filter"){
+           print("Please enter the numbers you want to filter, Example: 1,5,6,7,8,9")
+        let filterNums = readLine()
+        var filterNumsArray = (filterNums?.components(separatedBy: ","),
+            print("Choose < or >")
+        let greatOrLess = readLine() ?? "<"
+        print ("Enter the number your filtering by")
+        let filterBy = (readLine() ?? "0")
+        myFilter(inputArray: (filterNumsArray.value), by:  greatOrLess, filter: filterBy.value)
+       }
     
     if userInputAsArray[1] == "?" {
         let operAndArray = ["*", "/", "+", "-"]
@@ -54,10 +82,6 @@ func takeInInput(input:String) -> Double {
             print("Ohhh, that's wrong...")
         }
     }
-    
-    
-   
-  
  
 //    print(userInputAsArray)
 //    print(calcu)
@@ -66,13 +90,14 @@ func takeInInput(input:String) -> Double {
     
 }
 
+
 //print(takeInInput(input: userInput))
 
 var continuePrompt = false
 
 repeat  {
  
-   print("Please enter an expression, example: 5 + 3 ")
+   print("Please enter an expression or filter\n example: 5 + 3\n or\n filter ")
    let userInput = readLine() ?? "1 + 1"
   print()
    print(takeInInput(input: userInput))

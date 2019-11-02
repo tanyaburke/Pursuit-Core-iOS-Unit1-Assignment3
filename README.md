@@ -14,8 +14,9 @@
 Exhibit A. (operations dictionary)
 
 ```swift
-var operations: ([String: (Double, Double) -> Double]) = ["+": { $0 + $1 },
-                                                          "-": { $0 - $1 },
+var operations: 
+([String: (Double, Double) -> Double]) = ["+": { $0 + $1 },
+                                                        "-": { $0 - $1 },
                                                           "*": { $0 * $1 },
                                                           "/": { $0 / $1 }]
 ```
